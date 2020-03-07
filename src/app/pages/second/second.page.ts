@@ -11,7 +11,7 @@ import { SMS } from '@ionic-native/sms/ngx';
 })
 export class SecondPage implements OnInit {
 
-  phoneNumber: 981974333;
+  phoneNumber: 9819743332;
   textMessage: "Hi I need your urgent help! my location details are as follows";
   constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS) { }
 
@@ -30,7 +30,7 @@ export class SecondPage implements OnInit {
     }
     catch(e){
       const toast= this.toast.create({
-        message:"Text not sent!",
+        message:e,
         duration: 3000
       });
       (await toast).present();
