@@ -13,7 +13,7 @@ import { ConnectionService } from 'src/app/services/connection.service';
 export class SecondPage implements OnInit {
 
   phoneNumber = this.connection.GuardianList[0].PhoneNumber;
-  textMessage =  "Hi I need your urgent help! my location details are as follows";
+  textMessage =  "Hi please help me. It's an emergency. My location details are attached ";
   constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService) { }
 
   ngOnInit() {
