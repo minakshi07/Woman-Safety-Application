@@ -19,6 +19,8 @@ import { MediaCapture} from '@ionic-native/media-capture/ngx';
 import { Media } from '@ionic-native/media/ngx';
 import { File } from '@ionic-native/file/ngx';
 
+import { BackgroundMode } from '@ionic-native/background-mode/ngx';
+
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 firebase.initializeApp(environment.firebaseConfig)
@@ -33,6 +35,7 @@ firebase.initializeApp(environment.firebaseConfig)
     Geolocation,
     NativeGeocoder,
     SMS,
+    BackgroundMode,
     MediaCapture,
     Media,
     File,
