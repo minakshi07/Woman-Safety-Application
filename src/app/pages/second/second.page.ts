@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { SMS } from '@ionic-native/sms/ngx';
 
 
@@ -11,25 +11,29 @@ import { SMS } from '@ionic-native/sms/ngx';
 })
 export class SecondPage implements OnInit {
 
-  constructor(public navCtrl: NavController,private smsVar: SMS) { }
+  phoneNumber: 981974333;
+  textMessage: "Hi I need your urgent help! my location details are as follows";
+  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS) { }
 
   ngOnInit() {
   }
-  sendUserData(){
-    var options={
-      replaceLineBreaks: false, // true to replace \n by a new line, false by default
-      android: {
-           intent: 'INTENT'  // Opens Default sms app
-          //intent: '' // Sends sms without opening default sms app
-        }
-}
-    this.smsVar.send('9819743332', 'Hello world!',options)
-      .then((res)=>{
-        alert("success");
-      },(err)=>{
-      alert(err);
+  async sendTextMessage()
+  {
+    try{
+      await this.sms.send(String(this.phoneNumber),this.textMessage);
+      const toast = this.toast.create({
+        message:'text was sent!',
+        duration: 3000
       });
-    }
- 
+      (await toast).present();
 
+    }
+    catch(e){
+      const toast= this.toast.create({
+        message:"Text not sent!",
+        duration: 3000
+      });
+      (await toast).present();
+    }
+  }
 }
