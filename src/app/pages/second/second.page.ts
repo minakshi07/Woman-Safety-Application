@@ -14,29 +14,30 @@ export class SecondPage implements OnInit {
 
   phoneNumber = this.connection.GuardianList[0].PhoneNumber;
   textMessage =  "Hi I need your urgent help! my location details are as follows";
-  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService) { }
+  public onlineOffline: boolean = navigator.onLine;
+  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService) { 
+    console.log(this.onlineOffline)
+  }
 
   ngOnInit() {
   }
-  async sendTextMessage()
+  sendTextMessage()
   {
-    try{
-      await this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
-      console.log("sent")
-      const toast = this.toast.create({
-        message:'text was sent!',
-        duration: 3000
-      });
-      (await toast).present();
-
+    if(this.onlineOffline)
+    {
+      console.log("Internet hai")
     }
-    catch(err){
-      console.log(this.textMessage)
-      const toast= this.toast.create({
-        message:String(this.phoneNumber),
-        duration: 3000
-      });
-      (await toast).present();
+    else
+    {
+      try{
+        this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
+        console.log("sent")
+  
+      }
+      catch(err){
+        console.log(this.textMessage)
+      }
     }
+    
   }
 }
