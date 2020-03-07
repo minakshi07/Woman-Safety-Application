@@ -26,16 +26,34 @@ export class SecondPage implements OnInit {
     if(this.onlineOffline)
     {
       console.log("Internet hai")
+      try{
+        this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
+        console.log("sent")
+        alert("sent")
+  
+      }
+      catch(err){
+        console.log(this.textMessage)
+        const toast= this.toast.create({
+          message:String(this.phoneNumber),
+          duration: 3000
+        });
+      }
     }
     else
     {
       try{
         this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
         console.log("sent")
+        alert("sent")
   
       }
       catch(err){
         console.log(this.textMessage)
+        const toast= this.toast.create({
+          message:String(this.phoneNumber),
+          duration: 3000
+        });
       }
     }
     
