@@ -12,4 +12,8 @@ export class GuardiandetailsPage implements OnInit {
   ngOnInit() {
   }
 
+  register(form)
+  {
+    
+  }
 }
