@@ -8,11 +8,11 @@ import { File } from '@ionic-native/file';
 const MEDIA_FILES_KEY = 'mediaFiles';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'cam-login',
+  templateUrl: './cam.page.html',
+  styleUrls: ['./cam.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class CamPage implements OnInit {
   mediaFiles = [];
   @ViewChild('myvideo',{static:false}) myVideo: any;
   constructor(public navCtrl: NavController, private mediaCapture: MediaCapture, private storage: Storage, private file: File, private media: Media) { }
