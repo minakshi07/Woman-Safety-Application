@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -8,8 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-button color="danger" expand="block" routerLink="/menu/second/details" routerDirection="forward" (click)="sendTextMessage()">
+  <img src="https://tpg-twxdevzone.s3.amazonaws.com/files/media/tile%20images%20for%20guides/display-geolocation-data.png">
+  <br>
+  <ion-button color="warning" expand="block" routerDirection="forward" routerLink="/start-trip" >
     I'm feeling unsafe
+  </ion-button><br>
+  <ion-button color="danger" expand="block" routerLink="/menu/second/details" routerDirection="forward" (click)="sendTextMessage()">
+    I'm in danger
   </ion-button>
 </ion-content>
 

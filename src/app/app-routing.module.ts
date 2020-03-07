@@ -7,6 +7,7 @@ const routes: Routes = [
   { path: 'menu', loadChildren: './pages/menu/menu.module#MenuPageModule' },
   { path: 'guardiandetails', loadChildren: './guardiandetails/guardiandetails.module#GuardiandetailsPageModule' },
   { path: 'cam', loadChildren: './pages/cam/cam.module#CamPageModule' },
+  { path: 'start-trip', loadChildren: './start-trip/start-trip.module#StartTripPageModule' }
 ];
 
 @NgModule({
