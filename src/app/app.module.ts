@@ -11,8 +11,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from "@angular/common/http";
 
-import { SMS } from '@ionic-native/sms/ngx'
+import * as firebase from 'firebase';
 
+import { SMS } from '@ionic-native/sms/ngx'
+import { environment } from 'src/environments/environment';
+
+firebase.initializeApp(environment.firebaseConfig)
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
