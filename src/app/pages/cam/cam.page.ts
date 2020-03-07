@@ -4,7 +4,9 @@ import * as firebase from 'firebase';
 import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
 import { Media, MediaObject } from '@ionic-native/media/ngx';
 import { File } from '@ionic-native/file/ngx';
-
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireStorage } from 'angularfire2/storage';
+ 
 const MEDIA_FILES_KEY = 'mediaFiles';
 
 @Component({
