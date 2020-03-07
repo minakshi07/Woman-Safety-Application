@@ -13,30 +13,49 @@ import { ConnectionService } from 'src/app/services/connection.service';
 export class SecondPage implements OnInit {
 
   phoneNumber = this.connection.GuardianList[0].PhoneNumber;
-  textMessage =  "Hi please help me. It's an emergency. My location details are attached ";
-  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService) { }
+  textMessage =  "Hi I need your urgent help! my location details are as follows";
+  public onlineOffline: boolean = navigator.onLine;
+  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService) { 
+    console.log(this.onlineOffline)
+  }
 
   ngOnInit() {
   }
-  async sendTextMessage()
+  sendTextMessage()
   {
-    try{
-      await this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
-      console.log("sent")
-      const toast = this.toast.create({
-        message:'text was sent!',
-        duration: 3000
-      });
-      (await toast).present();
-
+    if(this.onlineOffline)
+    {
+      console.log("Internet hai")
+      try{
+        this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
+        console.log("sent")
+        alert("sent")
+  
+      }
+      catch(err){
+        console.log(this.textMessage)
+        const toast= this.toast.create({
+          message:String(this.phoneNumber),
+          duration: 3000
+        });
+      }
     }
-    catch(err){
-      console.log(this.textMessage)
-      const toast= this.toast.create({
-        message:String(this.phoneNumber),
-        duration: 3000
-      });
-      (await toast).present();
+    else
+    {
+      try{
+        this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
+        console.log("sent")
+        alert("sent")
+  
+      }
+      catch(err){
+        console.log(this.textMessage)
+        const toast= this.toast.create({
+          message:String(this.phoneNumber),
+          duration: 3000
+        });
+      }
     }
+    
   }
 }
