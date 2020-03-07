@@ -87,6 +87,12 @@
       "com.manueldeveloper.volume-buttons": {},
       "cordova-volume-control": {},
       "cordova-sms-plugin": {},
+      "cordova-plugin-media-capture": {},
+      "cordova-plugin-media": {},
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
+    
       "cordova-plugin-background-mode": {},
       "cordova-plugin-firebase": {}
     },
