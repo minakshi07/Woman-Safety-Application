@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConnectionService } from 'src/app/services/connection.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Tab2Page implements OnInit {
 
-  constructor() { }
+  GuardianList;
+  constructor(private connection:ConnectionService) { 
+    this.GuardianList = this.connection.GuardianList;
+  }
 
   ngOnInit() {
   }

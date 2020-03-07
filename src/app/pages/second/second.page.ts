@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { SMS } from '@ionic-native/sms/ngx';
 import { ConnectionService } from 'src/app/services/connection.service';
+// import { BackgroundMode } from '@ionic-native/background-mode';
+
 
 
 @Component({
@@ -15,7 +17,9 @@ export class SecondPage implements OnInit {
   phoneNumber = this.connection.GuardianList[0].PhoneNumber;
   textMessage =  "Hi I need your urgent help! my location details are as follows";
   public onlineOffline: boolean = navigator.onLine;
-  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService) { 
+  constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService,
+    // private backgroundMode: BackgroundMode
+    ) { 
     console.log(this.onlineOffline)
   }
 
@@ -28,34 +32,34 @@ export class SecondPage implements OnInit {
       console.log("Internet hai")
       try{
         this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
-        console.log("sent")
-        alert("sent")
-  
+        console.log("sent")  
       }
       catch(err){
         console.log(this.textMessage)
-        const toast= this.toast.create({
-          message:String(this.phoneNumber),
-          duration: 3000
-        });
+        alert("Message Not Sent")
       }
     }
     else
     {
       try{
         this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
-        console.log("sent")
-        alert("sent")
-  
+        console.log("sent")  
       }
       catch(err){
         console.log(this.textMessage)
-        const toast= this.toast.create({
-          message:String(this.phoneNumber),
-          duration: 3000
-        });
+        alert("Message Not Sent")
       }
     }
     
   }
+
+  test()
+  {
+    // this.backgroundMode.enable();
+    // if(this.backgroundMode.isEnabled)
+    // {
+    //   console.log("Background mode started")
+    // }
+  }
+  
 }

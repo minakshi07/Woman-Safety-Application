@@ -11,10 +11,14 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { HttpClientModule } from "@angular/common/http";
 
+import * as firebase from 'firebase';
+
 import { SMS } from '@ionic-native/sms/ngx'
+import { environment } from 'src/environments/environment';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+firebase.initializeApp(environment.firebaseConfig)
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
