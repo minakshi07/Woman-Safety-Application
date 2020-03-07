@@ -7,16 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content text-center>
-  <ion-card>
+<ion-content text-center *ngIf="GuardianList">
+  <ion-card *ngFor='let gl of GuardianList;index as i'>
     <ion-card-header>
-      <ion-card-subtitle>Emergency contact 1</ion-card-subtitle>
-      <ion-card-title>Vandana Kudalkar</ion-card-title>
+      <ion-card-subtitle>Emergency contact {{i+1}}</ion-card-subtitle>
+      <ion-card-title>{{GuardianList[i].Name}}</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-      <b>email:</b> v@gmail.com<br>
-      <b>phone number:</b> 9987528254
+      <b>Email:</b> {{GuardianList[i].Email}}<br>
+      <b>Phone Number:</b> {{GuardianList[i].PhoneNumber}}
     </ion-card-content>
   </ion-card>
 </ion-content>
