@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonicPage, NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController } from '@ionic/angular';
 import * as firebase from 'firebase';
-import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture';
-import { Media, MediaObject } from '@ionic-native/media';
-import { File } from '@ionic-native/file';
+import { MediaCapture, MediaFile, CaptureError, CaptureVideoOptions } from '@ionic-native/media-capture/ngx';
+import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 const MEDIA_FILES_KEY = 'mediaFiles';
 
@@ -15,7 +15,7 @@ const MEDIA_FILES_KEY = 'mediaFiles';
 export class CamPage implements OnInit {
   mediaFiles = [];
   @ViewChild('myvideo',{static:false}) myVideo: any;
-  constructor(public navCtrl: NavController, private mediaCapture: MediaCapture, private storage: Storage, private file: File, private media: Media) { }
+  constructor(public navCtrl: NavController, private mediaCapture: MediaCapture, private file: File, private media: Media) { }
 
   ngOnInit() {
   }

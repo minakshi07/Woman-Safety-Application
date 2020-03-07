@@ -15,6 +15,9 @@ import * as firebase from 'firebase';
 
 import { SMS } from '@ionic-native/sms/ngx'
 import { environment } from 'src/environments/environment';
+import { MediaCapture} from '@ionic-native/media-capture/ngx';
+import { Media } from '@ionic-native/media/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 firebase.initializeApp(environment.firebaseConfig)
 @NgModule({
@@ -25,6 +28,9 @@ firebase.initializeApp(environment.firebaseConfig)
     StatusBar,
     SplashScreen,
     SMS,
+    MediaCapture,
+    Media,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
