@@ -16,24 +16,8 @@ export class AppComponent {
     private statusBar: StatusBar,
     private backgroundMode: BackgroundMode
   ) {
-    this.initializeApp();
+    // this.initializeApp();
   }
 
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      this.backgroundMode.enable();
-      if(this.backgroundMode.enable){
-        console.log("background enabled");
-      }
-  window.addEventListener("volumebuttonslistener", onVolumeButtonsListener, false);
-	
-	function onVolumeButtonsListener(info){
-		console.log("Button pressed: " + info.signal);
-	}
-
-    });
-  }
   
 }
