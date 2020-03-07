@@ -23,6 +23,7 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 firebase.initializeApp(environment.firebaseConfig)
 @NgModule({
   declarations: [AppComponent],
