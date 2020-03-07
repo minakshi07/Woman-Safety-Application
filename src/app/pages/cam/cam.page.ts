@@ -21,10 +21,10 @@ export class CamPage implements OnInit {
   }
 
 
-  // captureAudio() {
-  //   this.mediaCapture.captureAudio().then(res => {
-  //   });
-  // }
+  captureAudio() {
+    this.mediaCapture.captureAudio().then(res => {
+    });
+  }
 
   captureVideo() {
     let options: CaptureVideoOptions = {
