@@ -30,7 +30,8 @@ export class AppComponent {
   window.addEventListener("volumebuttonslistener", onVolumeButtonsListener, false);
 	
 	function onVolumeButtonsListener(info){
-		console.log("Button pressed: " + info.signal);
+    console.log("Button pressed: " + info.signal);
+
 	}
 
     });
