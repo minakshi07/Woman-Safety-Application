@@ -16,7 +16,7 @@ export class AppComponent {
     private statusBar: StatusBar,
     private backgroundMode: BackgroundMode
   ) {
-    this.initializeApp();
+    // this.initializeApp();
   }
 
   initializeApp() {
