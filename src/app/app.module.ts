@@ -23,17 +23,20 @@ import { BackgroundMode } from '@ionic-native/background-mode/ngx';
 
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+import { IonicStorageModule } from '@ionic/storage';
+import { Camera } from '@ionic-native/camera/ngx';
 
 firebase.initializeApp(environment.firebaseConfig)
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, 
+  imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule, 
     HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
+    Camera,
     NativeGeocoder,
     SMS,
     BackgroundMode,

@@ -30,7 +30,7 @@ export class SecondPage implements OnInit {
   };
 
   phoneNumber = this.connection.GuardianList[0].PhoneNumber;
-  textMessage =  "Hi I need your urgent help! my location details are as follows";
+  textMessage =  "Hi I need your urgent help!";
   public onlineOffline: boolean = navigator.onLine;
   constructor(private toast: ToastController, public navCtrl: NavController, private sms: SMS,private connection:ConnectionService,
     // private backgroundMode: BackgroundMode
@@ -46,8 +46,10 @@ export class SecondPage implements OnInit {
 
   ngOnInit() {
   }
-  sendTextMessage()
+  async sendTextMessage()
   {
+    try{
+
     if(this.onlineOffline)
     {
       console.log("Internet hai")
@@ -65,20 +67,36 @@ export class SecondPage implements OnInit {
       //   console.log(this.geoLongitude)
       // }
 
-      this.getGeolocation();
+      await this.getGeolocation();
     }
     else
     {
       try{
-        this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
-        alert("sent")  
+        await this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
       }
       catch(err){
         console.log(this.textMessage)
-        alert("Message Not Sent")
+        alert(err)
       }
     }
+  }catch(e){
+    console.log(this.textMessage)
+        alert(e)
+  }
     
+  }
+
+  async sendTextMess()
+  {
+    try{
+      await this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage);
+      alert(this.connection.GuardianList[0].PhoneNumber)
+      alert(this.sms.send(String(this.connection.GuardianList[0].PhoneNumber),this.textMessage));
+    }
+    catch(err){
+      console.log(this.textMessage)
+      alert(err)
+    }
   }
 
   test(x)
@@ -93,11 +111,11 @@ export class SecondPage implements OnInit {
     }
   }
 
-   getGeolocation(){
-      this.geolocation.getCurrentPosition().then((resp) => {
+   async getGeolocation(){
+      await this.geolocation.getCurrentPosition().then((resp) => {
       this.geoLatitude = resp.coords.latitude;
       this.geoLongitude = resp.coords.longitude;
-      let x = this.textMessage + "     Latitude : "+ this.geoLatitude+",Longitude : "+this.geoLongitude;
+      let x = this.textMessage + " my location details are as follows:     Latitude : "+ this.geoLatitude+",Longitude : "+this.geoLongitude;
       this.test(x);
      }).catch((error) => {
        alert('Error getting location'+ JSON.stringify(error));
@@ -125,13 +143,13 @@ export class SecondPage implements OnInit {
       this.backgroundMode.enable();
       if(this.backgroundMode.isActive){
         alert("background enabled");
-        // this.backgroundMode.moveToBackground()
+        this.backgroundMode.moveToBackground()
         document.addEventListener("volumedownbutton", onVolumeDownKeyDown, false);
       }
 	
 	function onVolumeDownKeyDown(){
-    // this.backgroundmode.moveToForeground();
-    if(this.backgroundMode.isActive){
+    this.backgroundmode.moveToForeground();
+    if(!this.backgroundMode.isActive){
       alert("background disabled");
     }
 	}
