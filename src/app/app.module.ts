@@ -25,13 +25,15 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { Camera } from '@ionic-native/camera/ngx';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorage } from 'angularfire2/storage';
 
-firebase.initializeApp(environment.firebaseConfig)
+// firebase.initializeApp(environment.firebaseConfig)
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(),IonicStorageModule.forRoot(), AppRoutingModule, 
-    HttpClientModule],
+    HttpClientModule,AngularFireModule.initializeApp(environment.firebaseConfig)],
   providers: [
     StatusBar,
     SplashScreen,
@@ -43,6 +45,7 @@ firebase.initializeApp(environment.firebaseConfig)
     MediaCapture,
     Media,
     File,
+    AngularFireStorage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

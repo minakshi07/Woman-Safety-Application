@@ -4,6 +4,7 @@ import { NavController, ToastController, Platform } from '@ionic/angular';
 import { SMS } from '@ionic-native/sms/ngx';
 import { ConnectionService } from 'src/app/services/connection.service';
 // import { BackgroundMode } from '@ionic-native/background-mode';
+import * as firebase from 'firebase';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder,NativeGeocoderOptions,NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
 import { AlertController } from '@ionic/angular';
@@ -117,6 +118,13 @@ export class SecondPage implements OnInit {
       this.geoLongitude = resp.coords.longitude;
       let x = this.textMessage + " my location details are as follows:     Latitude : "+ this.geoLatitude+",Longitude : "+this.geoLongitude;
       this.test(x);
+      // let newPostKey = firebase.database().ref().child('posts').push().key;
+      // firebase.database().ref('cases/'+ newPostKey).set({
+      //   PhoneNumber:this.connection.GuardianList[0].PhoneNumber,
+      //   Latitude:this.geoLatitude,
+      //   Longitude:this.geoLongitude
+      // })
+      alert("Sent")
      }).catch((error) => {
        alert('Error getting location'+ JSON.stringify(error));
      });

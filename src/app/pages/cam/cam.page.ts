@@ -8,6 +8,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireStorage } from 'angularfire2/storage';
 import { Storage } from '@ionic/storage';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
+import { environment } from 'src/environments/environment';
 
 export class SessionDetail {
 	constructor(private file: File,public  platform: Platform,){
@@ -32,9 +33,10 @@ const MEDIA_FILES_KEY = 'mediaFiles';
 export class CamPage implements OnInit {
 mediaFiles = [];
   captureVideoUrl : string;
-  test = firebase.storage()
+  // test = firebase.storage();
   @ViewChild('myvideo',{static:false}) myVideo: any;
-  constructor(private camera: Camera,public navCtrl: NavController, private mediaCapture: MediaCapture,private afStorage: Storage, private file: File, private media: Media) { }
+  constructor(private camera: Camera,public navCtrl: NavController, private mediaCapture: MediaCapture,private afStorage: Storage, private file: File, private media: Media) { 
+  }
 
   ngOnInit() {
   }
@@ -50,11 +52,20 @@ mediaFiles = [];
       mediaType: this.camera.MediaType.PICTURE
     }
     const result = await this.camera.getPicture(options);
-    const image = await `data:image/jpeg;base64,${result}`;
-    const pictures = await this.test.ref('pictures');
-    await pictures.putString(image,'data_url'); 
+    if(result)
+    {
+      const image =  `data:image/jpeg;base64,${result}`;
+      alert(image)
+      const pictures =  firebase.storage().ref().child('pictures');
+      pictures.putString(image,'data_url').then(snapshot=>
+        {
+          alert("Success");
+        }).catch(err=>{
+          alert("err");
+        });
+    }
   }catch(e){
-    alert(e);
+    alert("Error " + e);
   }
 }
 

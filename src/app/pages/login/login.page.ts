@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import * as firebase from 'firebase';
 const validator = require('aadhaar-validator')
 
 @Component({
@@ -38,6 +39,13 @@ export class LoginPage implements OnInit {
       alert('Aadhar No not identified')
       
     }
+
+    var newPostKey = firebase.database().ref().child('posts').push().key;
+    firebase.database().ref('enroll/'+ newPostKey).set({
+      name:this.registerForm.controls['Name'].value,
+      email:this.registerForm.controls['Email'].value
+    })
+    alert("Sent")
   }
   
 
