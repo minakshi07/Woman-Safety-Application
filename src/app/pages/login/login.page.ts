@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 const validator = require('aadhaar-validator')
 
 @Component({
@@ -9,17 +11,33 @@ const validator = require('aadhaar-validator')
 export class LoginPage implements OnInit {
 
   ans: boolean;
+  registerForm:FormGroup;
 
-  constructor() { }
+  constructor(private fb:FormBuilder,private router:Router) {
+
+   }
 
   ngOnInit() {
+      this.registerForm = this.fb.group({
+      Name:'',
+      Email:'',
+      phoneNumber:'',
+      Anumber:'',
+    });
   }
 
-  register()
+  onSubmit()
   {
-    this.ans=validator.isValidNumber('234123412346')
-    console.log(this.ans)
-    alert(this.ans)
+    console.log(this.registerForm.controls['Anumber'].value)
+    if(validator.isValidNumber(String(this.registerForm.controls['Anumber'].value)))
+    {
+      this.router.navigateByUrl('/guardiandetails')
+    }
+    else
+    {
+      alert('Aadhar No not identified')
+      
+    }
   }
   
 
