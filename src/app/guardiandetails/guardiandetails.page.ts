@@ -8,7 +8,7 @@ import { ConnectionService } from '../services/connection.service';
   templateUrl: './guardiandetails.page.html',
   styleUrls: ['./guardiandetails.page.scss'],
 })
-export class GuardiandetailsPage implements OnInit {
+export class GuardiandetailsPage implements OnInit { 
 
   guardianForm : FormGroup;
   constructor(private fb:FormBuilder,private connection:ConnectionService) {
